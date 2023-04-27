@@ -30,7 +30,7 @@ class SongsService {
 
   async getSongs() {
     const result = await this._pool.query('SELECT * FROM songs');
-    return result;
+    return result.rows;
   }
 
   async getSongById(id) {
