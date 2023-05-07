@@ -20,7 +20,7 @@ class AlbumsService {
 
     const result = await this._pool.query(query);
 
-    if (!result.rows[0].id) {
+    if (!result.rowCount) {
       throw new InvariantError('Album gagal ditambahkan');
     }
 
@@ -32,6 +32,7 @@ class AlbumsService {
       text: 'SELECT * FROM albums WHERE id = $1',
       values: [id],
     };
+
     const result = await this._pool.query(query);
 
     if (!result.rowCount) {
@@ -46,7 +47,9 @@ class AlbumsService {
       text: 'SELECT id, title, performer FROM songs WHERE "albumId" = $1',
       values: [id],
     };
+
     const result = await this._pool.query(query);
+
     return result.rows.map(mapDBToModelSong);
   }
 

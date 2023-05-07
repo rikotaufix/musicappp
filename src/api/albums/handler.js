@@ -25,6 +25,7 @@ class AlbumsHandler {
 
   async getAlbumByIdHandler(request) {
     const { id } = request.params;
+
     const album = await this._service.getAlbumById(id);
     const songs = await this._service.getSongsInAlbum(id);
 
@@ -50,6 +51,7 @@ class AlbumsHandler {
 
   async deleteAlbumByIdHandler(request) {
     const { id } = request.params;
+
     await this._service.deleteAlbumById(id);
 
     return {

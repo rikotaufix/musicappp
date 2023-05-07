@@ -33,6 +33,7 @@ class AuthenticationsService {
       text: 'DELETE FROM authentications WHERE token = $1',
       values: [token],
     };
+
     await this._pool.query(query);
   }
 }
